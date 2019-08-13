@@ -1,5 +1,7 @@
 package neu.edu.info6205;
 
+import javafx.util.Pair;
+
 import java.io.IOException;
 import java.util.*;
 
@@ -25,7 +27,6 @@ public class Algorithm {
     private ArrayList<Integer> particles3 = new ArrayList<>();
     private ResultWriter rw;
     int optimalParticle;
-    
 
 
     public Algorithm(int target, int noOfInputs, int noOfParticles, int upperLimit, int lowerLimit, int noOfIterations,
@@ -65,6 +66,7 @@ public class Algorithm {
             } // j
             newParticle.setpBest(total);// Initially for every particle we set the pBest as the total of all the random
             // numbers in the data array.
+            System.out.println("Initial pBest:"+newParticle.getpBest());
             particles.add(newParticle);// we add the particle to the list
         } // i
         return;
@@ -201,6 +203,7 @@ public class Algorithm {
 
                         temp = i;
                         newtemp = true;
+                        System.out.println("GBEST:"+i);
                     }
                 }
             }
@@ -306,15 +309,104 @@ public class Algorithm {
 
         // return (int) ((high - low) * new Random().nextDouble() + low);
     }
+    private static void getRandomReturn() {
+        int randomInteger = 0;
+        Random random = new Random();
 
-    
+        randomInteger  = random.nextInt(50) + 1;
 
-      private int sum(int index, int goldP, int diamondP, int mutualfundsP, int gPeriod, int dPeriod, int mPeriod,
-			int bPeriod) {
-		ICompoundInterstAlgo IC = new SumAlgo1();
-               return IC.sum(index, goldP, diamondP, mutualfundsP, gPeriod, dPeriod, mPeriod, bPeriod, particles, noOfInputs);
-	}
-    
+        // System.out.println("Random Integer in Java: " + randomInteger);
+
+
+
+        // return (int) ((high - low) * new Random().nextDouble() + low);
+    }
+
+    public int sum(int index, int goldP, int diamondP, int mutualfundsP, int gPeriod, int dPeriod, int mPeriod,
+                   int bPeriod) {
+
+        int diamond = 0;
+        int diamond1 = 0;
+        int gold = 0;
+        int gold1 = 0;
+        int mutualFunds = 0;
+        int mutualFunds1 = 0;
+        int sum = 0;
+        int sum1 = 0;
+        int total1 = 0;
+        int tax = 0;
+        int total = 0;
+        int bankInterest = 0;
+        int rem = 0;
+        double interest = 0;
+        Particle par = null;// create a new instance of particle and set to null
+
+        par = particles.get(index);// null is now replaced with the particle object and its properties.
+
+        for (int i = 0; i < noOfInputs; i++) {
+            sum += par.getData(i);// get the random numbers allocated to every index of the data array of the
+        }
+// particle and add it to total. Do it continously until all numbers are added.
+// Calculation for the target
+        gold = (sum * goldP) / 100;// gold investment
+        gold1 = gold + (((gold * 20) / 100) * gPeriod);// gold investment
+        diamond = (sum * diamondP) / 100;// diamond investment
+        diamond1 = diamond + (((diamond * 30) / 100) * dPeriod);// diamond investment
+        mutualFunds = (sum * mutualfundsP) / 100;
+        mutualFunds1 = mutualFunds + (((mutualFunds * 14) / 100) * mPeriod);
+// sum = sum + ((sum * 11) / 100);
+
+// total = (sum + gold + diamond);
+
+// total = sum - ((sum * 20) / 100);
+        rem = sum - (gold1 + diamond1 + mutualFunds1);
+        bankInterest = (((rem * 11) / 100) * bPeriod);
+        total1 = sum + gold1 + diamond1 + mutualFunds1 + bankInterest;
+        tax = (total1 * 20) / 100;
+        total = total1 - tax;
+
+        return total;
+    }
+
+
+
+
+//        int diamond = 0;
+//        int diamond1 = 0;
+//        int gold = 0;
+//        int gold1 = 0;
+//        int mutualFunds = 0;
+//        int mutualFunds1 = 0;
+//        int totalAmountInAParticle = 0;
+//        int total1 = 0;
+//        int tax = 0;
+//        double total = 0;
+//        int bankInterest = 0;
+//        int rem = 0;
+//        Particle par = null;// create a new instance of particle and set to null
+//
+//        par = particles.get(index);// null is now replaced with the particle object and its properties.
+//
+//        for (int i = 0; i < noOfInputs; i++) {
+//            totalAmountInAParticle += par.getData(i);// get the random numbers allocated to every index of the data array of the
+//        }
+//
+//        int goldPrinciple = Investment.getPrinciple(totalAmountInAParticle,goldP);
+//        int diamondPrinciple = Investment.getPrinciple(totalAmountInAParticle,diamondP);
+//        int mutualfundsPrinciple = Investment.getPrinciple(totalAmountInAParticle,mutualfundsP);
+//        int bankPrinciple = totalAmountInAParticle-(goldPrinciple+diamondPrinciple+mutualfundsPrinciple);
+//
+//        Investment goldInvestment = new Investment(goldPrinciple, gPeriod);
+//        Investment diamondInvestment = new Investment(diamondPrinciple, dPeriod);
+//        Investment mutualFundsInvestment = new Investment(mutualfundsPrinciple, mPeriod);
+//        Investment bankInvestment = new Investment(bankPrinciple,bPeriod);
+//        double totalIncome = goldInvestment.compoundInterest()+diamondInvestment.compoundInterest()+
+//                mutualFundsInvestment.compoundInterest()+bankInvestment.compoundInterest();
+//        total = totalIncome-((totalIncome*20)/100);
+//
+//        return (int)total;
+
+
 
 
     public Solution getOptimalSol() throws IOException {
@@ -386,12 +478,14 @@ public class Algorithm {
 
             return new Solution(b, a,false);
 
+        }}
         }
 
 
 
 
-    }
 
 
-}
+
+
+
