@@ -51,7 +51,7 @@ public class SumAlgo2 implements ICompoundInterstAlgo {
 
 // total = sum - ((sum * 20) / 100);
 		rem = sum - (gold1 + diamond1 + mutualFunds1);
-		bankInterest = (((rem * 11) / 100) * bPeriod);
+		bankInterest = (((rem * 11) / 100) * 2);
 		total1 = sum + gold1 + diamond1 + mutualFunds1 + bankInterest;
 		tax = (total1 * 20) / 100;
 		total = total1 - tax;

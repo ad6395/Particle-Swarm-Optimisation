@@ -13,6 +13,9 @@ public class Metadata implements Comparable {
    }
    public int compareTo(Object o){//compairing the threads w.r.t soluton i.e. the amount to be invested
       Metadata m = (Metadata)o;
+      if (this.solution == null ||m.solution == null) {
+      return 0;
+    }
       return this.solution.compareTo(m.solution);
    }
 

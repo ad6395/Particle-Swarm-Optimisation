@@ -206,9 +206,9 @@ public class FirstJFrame extends javax.swing.JFrame {
           int mPeriod = Integer.parseInt(jTextField8.getText());
           int target = Integer.parseInt(jTextField2.getText());
           int bPeriod = 5;
-          int noOfInputs =3;
+          int noOfInputs =1;
           int noOfParticles=100;
-          int noOfIterations=200;
+          int noOfIterations=100;
           int x = 100-goldP;
           int y = x-diamondP;
         if(lowerlimit<0 ){
@@ -241,6 +241,7 @@ public class FirstJFrame extends javax.swing.JFrame {
         }
         
         
+        
         else{
          
 	
@@ -256,7 +257,11 @@ public class FirstJFrame extends javax.swing.JFrame {
              JOptionPane.showMessageDialog(null, " OPTIMAL Solution Found!");
              jTextField10.setText(solution.getSolution()+"");
          }
-         else{
+         else if(solution.getReturns()==0){
+             JOptionPane.showMessageDialog(null, " OPTIMAL Solution not Found! Try updating values!" );
+             
+         }
+         else {
              JOptionPane.showMessageDialog(null, " OPTIMAL Solution not Found! you can invest "+solution.getSolution()+" to get "+solution.getReturns());
              jTextField10.setText(solution.getSolution()+"");
              

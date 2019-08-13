@@ -349,8 +349,8 @@ public class Algorithm {
             }
             Arrays.sort(store);
             rw.writeLine("Store 1:" + Arrays.toString(store));
-            int x = target + 5;
-            int y = target - 5;
+            int x = target +((target*5) /100);
+            int y = target - ((target*5) /100);
             for (int i = 0; i < store.length; i++) {
 
                 if (y < store[i] && store[i] < x) {
