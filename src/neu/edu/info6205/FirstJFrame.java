@@ -208,7 +208,7 @@ public class FirstJFrame extends javax.swing.JFrame {
           int bPeriod = 5;
           int noOfInputs =3;
           int noOfParticles=100;
-          int noOfIterations=100;
+          int noOfIterations=200;
           int x = 100-goldP;
           int y = x-diamondP;
         if(lowerlimit<0 ){
@@ -248,9 +248,19 @@ public class FirstJFrame extends javax.swing.JFrame {
 				mutualfundsP, gPeriod, dPeriod, mPeriod, bPeriod);
           JOptionPane.showMessageDialog(null, "Calculating");
           
-        int solution = Main.solution();
+            Metadata solution = Main.solution();//for passing the metadata of the thread containing optimal solution basically the optimal thread
+       //created arraylist of type metadata to store the parameters of the thread as the objects. Every index of the thread will contains all the parameters of 1 thread i.e.(String threadName,Integer solution,Integer returns,boolean isOptimal)
          JOptionPane.showMessageDialog(null, "Solution Found!");
-         jTextField10.setText(solution+"");
+         
+         if(solution.getisOptimal()){
+             JOptionPane.showMessageDialog(null, " OPTIMAL Solution Found!");
+             jTextField10.setText(solution.getSolution()+"");
+         }
+         else{
+             JOptionPane.showMessageDialog(null, " OPTIMAL Solution not Found! you can invest "+solution.getSolution()+" to get "+solution.getReturns());
+             jTextField10.setText(solution.getSolution()+"");
+             
+         }
 //       try {
 //			Main.printSolution();
 //                        JOptionPane.showMessageDialog(null, "Optimal Solution found!");

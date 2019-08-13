@@ -37,32 +37,32 @@ public class Controller {
         this.bPeriod = bPeriod;
 
     }
-    public int solution()  {
+    public Metadata solution()  {// to get all the data of the best thread we call Metadata
         Work w = new Work(target,  noOfInputs,  noOfParticles,  upperLimit,  lowerLimit,  noOfIterations,
                 goldP,  diamondP,  mutualfundsP,  gPeriod,  dPeriod,  mPeriod,  bPeriod);
 
         int numberOfWorkers = 2;
-        Thread[] workerThreads = new Thread[numberOfWorkers];
+        Thread[] workerThreads = new Thread[numberOfWorkers];//Defining threads
         for(int i=0; i<numberOfWorkers; i++) {
-            workerThreads[i] = new Thread(w);
+            workerThreads[i] = new Thread(w);//assigning task of execution to every thread
         }
 
 
         for(int i=0; i<numberOfWorkers; i++) {
-            workerThreads[i].start();
+            workerThreads[i].start();//starting all threads
         }
         for(int i=0; i<numberOfWorkers; i++) {
             try {
-                workerThreads[i].join();
+                workerThreads[i].join();//To keep the main thread running 
             } catch (InterruptedException ex) {
                 ex.printStackTrace();
             }
         }
 
-        ArrayList<Metadata> md =w.getMetadata();
-        Collections.sort(md);
+        ArrayList<Metadata> md =w.getMetadata();//created arraylist to store the metadata(String threadName,Integer solution,Integer returns,boolean isOptimal) of each thread.
+        Collections.sort(md);//sorting the threads according to solution as mentions in compareTo method
         System.out.println(md);
-        return md.get(0).getSolution();//used to print the least solution given by the thread after sorting
+        return md.get(0);//used to print the least solution given by the thread after sorting
 
 
 

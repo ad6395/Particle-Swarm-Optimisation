@@ -25,6 +25,7 @@ public class Algorithm {
     private ArrayList<Integer> particles3 = new ArrayList<>();
     private ResultWriter rw;
     int optimalParticle;
+    
 
 
     public Algorithm(int target, int noOfInputs, int noOfParticles, int upperLimit, int lowerLimit, int noOfIterations,
@@ -306,117 +307,20 @@ public class Algorithm {
         // return (int) ((high - low) * new Random().nextDouble() + low);
     }
 
-    private  int sum(int index, int goldP, int diamondP, int mutualfundsP, int gPeriod, int dPeriod, int mPeriod,
+    
+
+      private int sum(int index, int goldP, int diamondP, int mutualfundsP, int gPeriod, int dPeriod, int mPeriod,
 			int bPeriod) {
-
-		int diamond = 0;
-		int diamond1 = 0;
-		int gold = 0;
-		int gold1 = 0;
-		int gold2 = 0;
-		int mutualFunds = 0;
-		int mutualFunds1 = 0;
-		int sum = 0;
-		int sum1 = 0;
-		int total1 = 0;
-		int tax = 0;
-		int total = 0;
-		int bankInterest = 0;
-		int rem = 0;
-		double interest = 0;
-		Particle par = null;// create a new instance of particle and set to null
-		Random randomGenerator = new Random();
-		par = particles.get(index);// null is now replaced with the particle object and its properties.
-
-		for (int i = 0; i < noOfInputs; i++) {
-			sum += par.getData(i);// get the random numbers allocated to every index of the data array of the
-		} // particle and add it to total. Do it continously until all numbers are added.
-//Calculation for the target
-		gold = (sum * goldP) / 100;// gold investment
-		for (int i = 0; i < gPeriod; i++) {
-			int randomInt = randomGenerator.nextInt(50) + 1;
-			System.out.println("GOLD ROI for month " + i + " is " + randomInt);
-			gold1 = gold + (((gold * 10) / 100));
-			gold += gold1;
-		}
-		diamond = (sum * diamondP) / 100;// gold investment
-		for (int i = 0; i < dPeriod; i++) {
-			int randomInt = randomGenerator.nextInt(50) + 1;
-			System.out.println("Diamond ROI for month " + i + " is " + randomInt);
-			diamond1 = diamond + (((diamond * 10) / 100));
-			diamond += diamond1;
-		}
-		mutualFunds = (sum * mutualfundsP) / 100;// gold investment
-		for (int i = 0; i < dPeriod; i++) {
-			int randomInt = randomGenerator.nextInt(50) + 1;
-			System.out.println("MF ROI for month " + i + " is " + randomInt);
-			mutualFunds1 = mutualFunds + (((mutualFunds * 10) / 100));
-			mutualFunds += mutualFunds1;
-		}
-		//rem = sum - (sum + gold + diamond + mutualFunds);
-//gold1 = gold + (((gold * 20) / 100) * gPeriod);// gold investment
-//diamond = (sum * diamondP) / 100;// diamond investment
-//diamond1 = diamond + (((diamond * 30) / 100) * dPeriod);// diamond investment
-//mutualFunds = (sum * mutualfundsP) / 100;
-//mutualFunds1 = mutualFunds + (((mutualFunds * 14) / 100) * mPeriod);
-////sum = sum + ((sum * 11) / 100);
-//
-////total = (sum + gold + diamond);
-//
-////total = sum - ((sum * 20) / 100);
-//
-
-//total1 = sum + gold1 + diamond1 + mutualFunds1 + bankInterest;
-		total1 = sum + gold + diamond + mutualFunds;
-		tax = (total1 * 20) / 100;
-		total = total1 - tax;
-
-		return total;
-
-	
+		ICompoundInterstAlgo IC = new SumAlgo2();
+               return IC.sum(index, goldP, diamondP, mutualfundsP, gPeriod, dPeriod, mPeriod, bPeriod, particles, noOfInputs);
+	}
+    
 
 
-       /* int diamond = 0;
-        int diamond1 = 0;
-        int gold = 0;
-        int gold1 = 0;
-        int mutualFunds = 0;
-        int mutualFunds1 = 0;
-        int totalAmountInAParticle = 0;
-        int total1 = 0;
-        int tax = 0;
-        double total = 0;
-        int bankInterest = 0;
-        int rem = 0;
-        Particle par = null;// create a new instance of particle and set to null
-
-        par = particles.get(index);// null is now replaced with the particle object and its properties.
-
-        for (int i = 0; i < noOfInputs; i++) {
-            totalAmountInAParticle += par.getData(i);// get the random numbers allocated to every index of the data array of the
-        }
-
-        int goldPrinciple = Investment.getPrinciple(totalAmountInAParticle,goldP);
-        int diamondPrinciple = Investment.getPrinciple(totalAmountInAParticle,diamondP);
-        int mutualfundsPrinciple = Investment.getPrinciple(totalAmountInAParticle,mutualfundsP);
-        int bankPrinciple = totalAmountInAParticle-(goldPrinciple+diamondPrinciple+mutualfundsPrinciple);
-
-        Investment goldInvestment = new Investment(goldPrinciple, gPeriod);
-        Investment diamondInvestment = new Investment(diamondPrinciple, dPeriod);
-        Investment mutualFundsInvestment = new Investment(mutualfundsPrinciple, mPeriod);
-        Investment bankInvestment = new Investment(bankPrinciple,bPeriod);
-        double totalIncome = goldInvestment.compoundInterest()+diamondInvestment.compoundInterest()+
-                mutualFundsInvestment.compoundInterest()+bankInvestment.compoundInterest();
-        total = totalIncome-((totalIncome*20)/100);
-
-        return (int)total;
-*/
-    }
-
-
-    public int getOptimalSol() throws IOException {
+    public Solution getOptimalSol() throws IOException {
         System.out.println("**************************************************");
         int sol;
+        int finalSum=0;
         if(optimalParticle != -1){
             rw.writeLine("\nParticle Number:" + optimalParticle+"\n");
             int sum = 0;
@@ -429,6 +333,9 @@ public class Algorithm {
                 }
             }
             sol = sum;
+            rw.writeLine("Solution Found!:"+sol);
+            rw.closeStream();
+            return new Solution(sol,target,true);
         }
         else {
             System.out.println("optimal solution not found.");
@@ -472,15 +379,19 @@ public class Algorithm {
             rw.writeLine("\nSolution cannot be found!Please enter different value!");
             rw.writeLine("\nInstead of " + target + " you can set target as:" + a + " and invest $:" + b);
             // System.out.println("HashMap:" + particleMap);
+
             sol = b;
+
+            rw.closeStream();
+
+            return new Solution(b, a,false);
 
         }
 
-        rw.closeStream();
-        return sol;
+
+
 
     }
-
 
 
 }

@@ -18,6 +18,7 @@ public class Work implements Runnable {
     private int dPeriod;
     private int mPeriod;
     private int bPeriod;
+    
 
     public ArrayList<Metadata> getMetadata() {
         return metadata;
@@ -54,9 +55,12 @@ public class Work implements Runnable {
             a = new Algorithm( target,  noOfInputs,  noOfParticles,  upperLimit,  lowerLimit,  noOfIterations,
              goldP,  diamondP,  mutualfundsP,  gPeriod,  dPeriod,  mPeriod,  bPeriod);
             a.PSOAlgorithm();
-            int opt = a.getOptimalSol();
-            System.out.println(opt);
-            metadata.add(new Metadata(Thread.currentThread().getName(), opt));
+            Solution opt = a.getOptimalSol();
+            int x =opt.getReturnsIfNotOptimal();//storing getRetunsIfNotOptimal in x
+            int y = opt.getSolution();//same as above but in y
+            boolean z = opt.isOptimalSolution();//same as above but in z
+            //System.out.println(opt);
+            metadata.add(new Metadata(Thread.currentThread().getName(),y,x,z));//Since we created arraylist of type metadata and metadata constructor has 4 parameters i.eString threadName,Integer solution,Integer returns,boolean isOptimal, we need to add 4 paramters to the list
         } catch (IOException e) {
             e.printStackTrace();
         }
