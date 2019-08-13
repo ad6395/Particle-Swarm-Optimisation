@@ -311,7 +311,7 @@ public class Algorithm {
 
       private int sum(int index, int goldP, int diamondP, int mutualfundsP, int gPeriod, int dPeriod, int mPeriod,
 			int bPeriod) {
-		ICompoundInterstAlgo IC = new SumAlgo2();
+		ICompoundInterstAlgo IC = new SumAlgo1();
                return IC.sum(index, goldP, diamondP, mutualfundsP, gPeriod, dPeriod, mPeriod, bPeriod, particles, noOfInputs);
 	}
     
