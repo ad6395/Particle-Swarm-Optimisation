@@ -12,8 +12,8 @@ import java.util.Random;
  *
  * @author Abhishek Dongare
  */
-public class SumAlgo3 {
-    public class SumAlgo1 implements ICompoundInterstAlgo {
+
+    public class SumAlgo3 implements ICompoundInterstAlgo {
       public int sum(int index, int goldP, int diamondP, int mutualfundsP, int gPeriod, int dPeriod, int mPeriod,
                            int bPeriod, ArrayList<Particle> particles, int noOfInputs) {
 
@@ -33,6 +33,8 @@ ArrayList<Integer> A =new ArrayList<>();
 		int bankInterest = 0;
 		int rem = 0;
 		double interest = 0;
+                int gAvg=0;
+                int g1=0;
 		Particle par = null;// create a new instance of particle and set to null
 		Random randomGenerator = new Random();
 		par = particles.get(index);// null is now replaced with the particle object and its properties.
@@ -48,7 +50,10 @@ for(int i=2;i<13;i++){
 		// Calculation for the target
 		gold = (sum * goldP) / 100;// gold investment
 		for (int i = 0; i < gPeriod; i++) {
+                  
 			int r =A.get(i);
+                         gAvg+=A.get(i);
+                         g1=gAvg/gPeriod;
 			// System.out.println("GOLD ROI for month " + i + " is " + randomInt);
 			gold1 = gold + (((gold * r) / 100));
 			gold += gold1;
@@ -75,4 +80,4 @@ for(int i=2;i<13;i++){
 		return total;
 
 	}}
-}
+

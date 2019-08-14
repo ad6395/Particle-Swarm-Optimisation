@@ -3,7 +3,11 @@ package neu.edu.info6205;
 import javafx.util.Pair;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.SwingUtilities;
 
 public class Algorithm {
 
@@ -21,12 +25,14 @@ public class Algorithm {
     private int dPeriod;
     private int mPeriod;
     private int bPeriod;
-    private ArrayList<Particle> particles = new ArrayList<>();
+    
+    public static ArrayList<Particle> particles = new ArrayList<>();
     private TreeMap<Integer, Integer> particleTreeMap = new TreeMap<>();
     private ArrayList<Integer> particles2 = new ArrayList<>();
     private ArrayList<Integer> particles3 = new ArrayList<>();
     private ResultWriter rw;
     int optimalParticle;
+
 
 
     public Algorithm(int target, int noOfInputs, int noOfParticles, int upperLimit, int lowerLimit, int noOfIterations,
@@ -479,6 +485,7 @@ public class Algorithm {
             return new Solution(b, a,false);
 
         }}
+  
         }
 
 

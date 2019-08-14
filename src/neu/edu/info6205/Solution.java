@@ -4,6 +4,8 @@ public class Solution {
     private boolean isOptimalSolution;
     private int solution;
     private int returnsIfNotOptimal;
+   
+    
 
     public Solution(int solution, int returnsIfNotOptimal,boolean isOptimalSolution) {
         this.isOptimalSolution = isOptimalSolution;

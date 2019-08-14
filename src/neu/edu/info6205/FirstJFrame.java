@@ -11,7 +11,13 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 import javax.swing.JOptionPane;
-
+import javax.swing.JTextField;
+import java.lang.Object;
+import java.util.EventObject;
+import java.awt.AWTEvent;
+import java.awt.event.ComponentEvent;
+import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
 /**
  *
  * @author Abhishek Dongare
@@ -66,11 +72,21 @@ public class FirstJFrame extends javax.swing.JFrame {
                 jTextField1ActionPerformed(evt);
             }
         });
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField1KeyTyped(evt);
+            }
+        });
         getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 120, 190, -1));
 
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField2ActionPerformed(evt);
+            }
+        });
+        jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField2KeyTyped(evt);
             }
         });
         getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 180, 190, -1));
@@ -86,12 +102,28 @@ public class FirstJFrame extends javax.swing.JFrame {
                 jTextField3ActionPerformed(evt);
             }
         });
+        jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField3KeyTyped(evt);
+            }
+        });
         getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 270, 110, -1));
+
+        jTextField4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField4KeyTyped(evt);
+            }
+        });
         getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 320, 110, -1));
 
         jTextField5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField5ActionPerformed(evt);
+            }
+        });
+        jTextField5.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField5KeyTyped(evt);
             }
         });
         getContentPane().add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 370, 110, -1));
@@ -110,12 +142,28 @@ public class FirstJFrame extends javax.swing.JFrame {
                 jTextField6ActionPerformed(evt);
             }
         });
+        jTextField6.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField6KeyTyped(evt);
+            }
+        });
         getContentPane().add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 270, 110, -1));
+
+        jTextField7.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField7KeyTyped(evt);
+            }
+        });
         getContentPane().add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 320, 110, -1));
 
         jTextField8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField8ActionPerformed(evt);
+            }
+        });
+        jTextField8.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField8KeyTyped(evt);
             }
         });
         getContentPane().add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 370, 110, -1));
@@ -140,6 +188,11 @@ public class FirstJFrame extends javax.swing.JFrame {
         jTextField9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField9ActionPerformed(evt);
+            }
+        });
+        jTextField9.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField9KeyTyped(evt);
             }
         });
         getContentPane().add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 150, 190, -1));
@@ -211,6 +264,11 @@ public class FirstJFrame extends javax.swing.JFrame {
           int noOfIterations=100;
           int x = 100-goldP;
           int y = x-diamondP;
+  try{
+      int i =Integer.parseInt(jTextField1.getText());
+  }catch(NumberFormatException e){
+    JOptionPane.showMessageDialog(null, "Ivalid lower Limit!");
+  }
         if(lowerlimit<0 ){
             JOptionPane.showMessageDialog(null, "Ivalid lower Limit!");
         }
@@ -266,6 +324,7 @@ public class FirstJFrame extends javax.swing.JFrame {
              jTextField10.setText(solution.getSolution()+"");
              
          }
+         jTextField10.setEditable(false);
 //       try {
 //			Main.printSolution();
 //                        JOptionPane.showMessageDialog(null, "Optimal Solution found!");
@@ -326,6 +385,52 @@ public class FirstJFrame extends javax.swing.JFrame {
     private void jTextField10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField10ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField10ActionPerformed
+
+    private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
+        char c = evt.getKeyChar();
+        if(!(Character.isDigit(c))||(c==KeyEvent.VK_BACK_SPACE)|| c==KeyEvent.VK_DELETE){evt.consume();}
+        
+    }//GEN-LAST:event_jTextField1KeyTyped
+
+    private void jTextField9KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField9KeyTyped
+        char c = evt.getKeyChar();
+        if(!(Character.isDigit(c))||(c==KeyEvent.VK_BACK_SPACE)|| c==KeyEvent.VK_DELETE){evt.consume();}
+    }//GEN-LAST:event_jTextField9KeyTyped
+
+    private void jTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyTyped
+         char c = evt.getKeyChar();
+        if(!(Character.isDigit(c))||(c==KeyEvent.VK_BACK_SPACE)|| c==KeyEvent.VK_DELETE){evt.consume();}
+    }//GEN-LAST:event_jTextField2KeyTyped
+
+    private void jTextField3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyTyped
+         char c = evt.getKeyChar();
+        if(!(Character.isDigit(c))||(c==KeyEvent.VK_BACK_SPACE)|| c==KeyEvent.VK_DELETE){evt.consume();}
+    }//GEN-LAST:event_jTextField3KeyTyped
+
+    private void jTextField4KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyTyped
+         char c = evt.getKeyChar();
+        if(!(Character.isDigit(c))||(c==KeyEvent.VK_BACK_SPACE)|| c==KeyEvent.VK_DELETE){evt.consume();}
+    }//GEN-LAST:event_jTextField4KeyTyped
+
+    private void jTextField5KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField5KeyTyped
+         char c = evt.getKeyChar();
+        if(!(Character.isDigit(c))||(c==KeyEvent.VK_BACK_SPACE)|| c==KeyEvent.VK_DELETE){evt.consume();}
+    }//GEN-LAST:event_jTextField5KeyTyped
+
+    private void jTextField6KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField6KeyTyped
+         char c = evt.getKeyChar();
+        if(!(Character.isDigit(c))||(c==KeyEvent.VK_BACK_SPACE)|| c==KeyEvent.VK_DELETE){evt.consume();}
+    }//GEN-LAST:event_jTextField6KeyTyped
+
+    private void jTextField7KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField7KeyTyped
+         char c = evt.getKeyChar();
+        if(!(Character.isDigit(c))||(c==KeyEvent.VK_BACK_SPACE)|| c==KeyEvent.VK_DELETE){evt.consume();}
+    }//GEN-LAST:event_jTextField7KeyTyped
+
+    private void jTextField8KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField8KeyTyped
+         char c = evt.getKeyChar();
+        if(!(Character.isDigit(c))||(c==KeyEvent.VK_BACK_SPACE)|| c==KeyEvent.VK_DELETE){evt.consume();}
+    }//GEN-LAST:event_jTextField8KeyTyped
 
     /**
      * @param args the command line arguments
